@@ -5,7 +5,7 @@ using namespace std;
 
 template <class T>
 Bag<T>::Bag(int bagCapacity) : capacity(bagCapacity)
-{
+{ // constructor
     if (capacity < 1)
         throw "Capacity must be > 0";
     array = new T[capacity];
@@ -14,19 +14,18 @@ Bag<T>::Bag(int bagCapacity) : capacity(bagCapacity)
 
 template <class T>
 Bag<T>::~Bag()
-{
+{ // destructor
     delete[] array;
 }
-
 template <class T>
 int Bag<T>::IsEmpty() const
-{
+{ // return true if bag is empty
     return Size() == 0;
 }
 
 template <class T>
 T &Bag<T>::Element() const
-{
+{ // return an element tha is in the bag
     if (IsEmpty())
         throw "Bag is empty";
     return array[0];
@@ -34,7 +33,7 @@ T &Bag<T>::Element() const
 
 template <class T>
 void Bag<T>::changeSize(const int newSize)
-{
+{ // increase the size of the array
     if (newSize < capacity)
         throw "New length must be > bag size";
 
@@ -47,7 +46,7 @@ void Bag<T>::changeSize(const int newSize)
 
 template <class T>
 void Bag<T>::Push(const T &x)
-{
+{ // insert an integer into the bag
     if (capacity == top + 1)
         changeSize(2 * capacity);
 
@@ -56,7 +55,7 @@ void Bag<T>::Push(const T &x)
 
 template <class T>
 void Bag<T>::Pop()
-{
+{ // delete an integer from the bag
     if (IsEmpty())
         throw "Bag is empty, cannot delete";
     int deletePos = top / 2;
@@ -77,13 +76,9 @@ ostream &operator<<(ostream &os, Bag<T> &s)
     for (int i = 0; i < s.capacity; i++)
     {
         if (i < s.top + 1)
-        {
             os << left << setw(6) << to_string(s.array[i]);
-        }
         else
-        {
             os << left << setw(6) << " ";
-        }
     }
     os << endl;
     return os;
@@ -100,17 +95,16 @@ myStack<T>::~myStack() {}
 
 template <class T>
 T &myStack<T>::Top() const
-{
-    if (this->IsEmpty())
+{                        // override Bag's Top function
+    if (this->IsEmpty()) // use IsEmpty of Bag
         throw "Stack is empty";
-    return this->array[this->top];
+    return this->array[this->top]; // use array of Bag
 }
 
 template <class T>
 void myStack<T>::Pop()
-{
-    if (this->IsEmpty())
+{                        // override Bag's Pop function
+    if (this->IsEmpty()) // use IsEmpty of Bag
         throw "Stack is empty. Cannot delete";
-
-    this->array[this->top--].~T();
+    this->array[this->top--].~T(); // use array of Bag
 }

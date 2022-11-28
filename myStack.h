@@ -4,7 +4,7 @@ using namespace std;
 
 template <class T>
 class Bag
-{
+{ // Bag class
 public:
     Bag(int bagCapacity = 10);
     ~Bag();
@@ -26,7 +26,7 @@ protected:
 
 template <class T>
 class myStack : public Bag<T>
-{
+{ // stack class derived from Bag class
 public:
     myStack(int myStackCapacity = 10);
     ~myStack();
