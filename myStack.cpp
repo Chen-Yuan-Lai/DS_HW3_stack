@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-#include "MYStack.h"
+#include "myStack.h"
 using namespace std;
 
 template <class T>
